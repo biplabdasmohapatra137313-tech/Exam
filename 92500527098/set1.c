@@ -1,0 +1,81 @@
+//Implement stack using array with following operations: Push, pop, print, exit.
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int stack[10];
+int top = -1;
+int MAX = 10;
+
+void push();
+void pop();
+void print();
+
+int main()
+{
+    int choice;
+    while (1)
+    {
+        printf("\nSTACK OPERATIONS MENU\n");
+        printf("1. Push\n");
+        printf("2. Pop\n");
+        printf("3. Print (Display)\n");
+        printf("4. Exit\n");
+        printf("Enter your choice (1-4): ");
+        scanf("%d", &choice);
+
+        switch (choice)
+        {
+            case 1: push(); break;
+            case 2: pop(); break;
+            case 3: print(); break;
+            case 4:
+                printf("Exiting program...\n");
+                exit(0);
+            default:
+                printf("Invalid choice! Please enter a number between 1 and 7.\n");
+        }
+    }
+    return 0;
+}
+
+void push()
+{
+    int value;
+    if (top == MAX - 1)
+    {
+        printf("Stack Overflow! Cannot push more elements.\n");
+    } else {
+        printf("Enter value to push: ");
+        scanf("%d", &value);
+        top++;
+        stack[top] = value;
+        printf("%d successfully pushed onto the stack.\n", value);
+    }
+}
+
+void pop()
+{
+    if (top == -1)
+    {
+        printf("Stack Underflow! No elements to pop.\n");
+    } else {
+        printf("Popped element: %d\n", stack[top]);
+        top--;
+    }
+}
+
+void print()
+{
+    if (top == -1)
+    {
+        printf("Stack is empty!\n");
+    } else {
+        printf("Current Stack elements:\n");
+        for (int i = top; i >= 0; i--)
+        {
+            printf("| %d |\n", stack[i]);
+        }
+        printf("-----\n");
+    }
+}
